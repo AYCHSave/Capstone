@@ -2,11 +2,11 @@
 ## Clients
 A new startup financial institution, Capstone Savings Bank is a web-based bank that offers basic checking and savings accounts.
 ## Users
-	The primary users of the site will be the general public (prospective accountholders), current accountholders, and customer service administrators. 
+The primary users of the site will be the general public (prospective accountholders), current accountholders, and customer service administrators. 
 ## Problem/Need
 Capstone Savings Bank needs an online presence to attract new customers and provide current customers with a modern and intuitive tool to manage their accounts. The site will also afford customer service administrators a simple and secure way to interact with customer accounts.
 ## General Functionality
-	Upon visiting the site’s home page, all visitors will be presented with the main page which will have sales content promoting the bank and its current promotions. There will be a prominent link to login to the site that accountholders and administrators will follow to securely enter their username and password criteria. Other visitors will be able to follow links to securely register for a new account.
+Upon visiting the site’s home page, all visitors will be presented with the main page which will have sales content promoting the bank and its current promotions. There will be a prominent link to login to the site that accountholders and administrators will follow to securely enter their username and password criteria. Other visitors will be able to follow links to securely register for a new account.
 The general public will be able to:
 *	View sales and promotional offers available to new customers with descriptions of benefits enjoyed by current customers.
 *	Ability to register a new account and fund that account with a debit card
