@@ -1,0 +1,36 @@
+@import url(http://fonts.googleapis.com/css?family=Cinzel:400,900);
+
+body {
+	background-color: #4A6EB8;
+	.font-smoothing {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+}
+
+h1 {
+	font-size: 5em;
+	color: #FFF;
+	font-family: 'Cinzel', serif;
+	font-weight: 500;
+}
+
+p, h2 {
+	font-family: "Comic Sans MS", cursive, sans-serif;
+}
+
+p {
+	font-size: 14pt;
+	color: #DDD;
+}
+
+.bulletin {
+	font-size: 3em;
+	color: #F9F;
+	text-shadow: 2px 2px 2px #C7C;
+}
+
+a {
+	color: #FFF;
+	text-decoration: none;
+}
