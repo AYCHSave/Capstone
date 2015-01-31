@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-
+# ruby "2.0.0"
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.7'
 # Use sqlite3 as the database for Active Record
@@ -43,3 +43,8 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin]
 group :production do
 	gem 'pg'
 end
+
+# Heroku gem that replaces need for plugins, optimizes configuration
+gem 'rails_12factor'
+# Heroku fix for assets delivery (replaces need for Nginx)
+gem 'rails_serve_static_assets'
