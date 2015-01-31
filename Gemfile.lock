@@ -52,6 +52,8 @@ GEM
     mime-types (2.4.3)
     minitest (5.5.1)
     multi_json (1.10.1)
+    puma (2.11.0)
+      rack (>= 1.1, < 2.0)
     rack (1.5.2)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -100,7 +102,7 @@ GEM
       coffee-rails
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
-    tzinfo-data (1.2014.10)
+    tzinfo-data (1.2015.1)
       tzinfo (>= 1.0.0)
     uglifier (2.7.0)
       execjs (>= 0.3.0)
@@ -114,6 +116,7 @@ DEPENDENCIES
   coffee-rails (~> 4.0.0)
   jbuilder (~> 2.0)
   jquery-rails
+  puma (~> 2.11.0)
   rails (= 4.1.8)
   sass-rails (~> 4.0.3)
   sdoc (~> 0.4.0)
