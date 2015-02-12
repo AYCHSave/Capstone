@@ -1,0 +1,21 @@
+<h1>Listing states</h1>
+<% flash.each do |key, msg| %>
+<p><%= msg %></p>
+<% end %>
+<table id="indexTable">
+  <tr>
+    <th>ID</th>
+    <th>Name</th>
+    <th>Abbreviation</th>
+    <th>Associated Press</th>
+  </tr>
+
+<% @states.each do |state| %>
+  <tr class="<%= cycle('even', 'odd') %>">
+    <td><%= state.id %></td>
+    <td><%= state.name %></td>
+    <td><%= state.abbreviation %></td>
+    <td><%= state.assoc_press %></td>
+  </tr>
+<% end %>
+</table>
