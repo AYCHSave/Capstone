@@ -48,9 +48,10 @@ test:
 #     url: <%= ENV['DATABASE_URL'] %>
 #
 production:
-  <<: *default
-  database: <%= ENV['RDS_USERNAME'] %>
-  username: <%= ENV['RDS_USERNAME'] %>
-  password: <%= ENV['RDS_PASSWORD'] %>
-  host: <%= ENV['RDS_HOSTNAME'] %>
-  port: <%= ENV['RDS_PORT'] %>
+  adapter: mysql2
+  encoding: utf8
+  database: capstone
+  username: bbulpett
+  password: 4kayamoses
+  host: east1-mysql-instance1.cp6tcuvv1ko8.us-east-1.rds.amazonaws.com
+  port: 3306
