@@ -19,14 +19,14 @@ default: &default
 
 development:
   <<: *default
-  database: capstone-0.1.1
+  database: capstone
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: capstone-0_0_0_test
+  database: capstone
 
 # As with config/secrets.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
@@ -49,6 +49,8 @@ test:
 #
 production:
   <<: *default
-  database: capstone-0_0_0_production
-  username: capstone-0_0_0
-  password: <%= ENV['CAPSTONE-0_0_0_DATABASE_PASSWORD'] %>
+  database: <%= ENV['RDS_USERNAME'] %>
+  username: <%= ENV['RDS_USERNAME'] %>
+  password: <%= ENV['RDS_PASSWORD'] %>
+  host: <%= ENV['RDS_HOSTNAME'] %>
+  port: <%= ENV['RDS_PORT'] %>
