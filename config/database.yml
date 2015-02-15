@@ -55,3 +55,5 @@ production:
   password: 4kayamoses
   host: east1-mysql-instance1.cp6tcuvv1ko8.us-east-1.rds.amazonaws.com
   port: 3306
+  pool: 5
+  timeout: 5000
