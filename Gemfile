@@ -31,15 +31,18 @@ gem 'fabrication', '~> 2.12.2'
 gem 'faker', '~> 1.4.3'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
+
 # Amazon cli tools
 gem 'aws-sdk', '~> 2.0.24'
-gem 'elastic-beanstalk'
+
 # The yaml_db gem is used to populate the database with existing data
 # gem 'yaml_db', '~>0.3.0'
 # Use unicorn as the app server
 # gem 'unicorn'
+
 # Use Puma as the app server
 gem 'puma', '~> 2.11.1'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
