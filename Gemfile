@@ -37,7 +37,8 @@ gem 'aws-sdk', '~> 2.0.24'
 # gem 'yaml_db', '~>0.3.0'
 # Use unicorn as the app server
 # gem 'unicorn'
-
+# Use Puma as the app server
+gem 'puma', '~> 2.11.1'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
