@@ -33,6 +33,7 @@ gem 'faker', '~> 1.4.3'
 # gem 'bcrypt', '~> 3.1.7'
 # Amazon cli tools
 gem 'aws-sdk', '~> 2.0.24'
+gem 'elastic-beanstalk'
 # The yaml_db gem is used to populate the database with existing data
 # gem 'yaml_db', '~>0.3.0'
 # Use unicorn as the app server
