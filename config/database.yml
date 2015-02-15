@@ -15,8 +15,7 @@ default: &default
   pool: 5
   username: root
   password: 4kayamoses
-  host: 127.0.0.1
-  # socket: /var/run/mysqld/mysqld.sock
+  socket: /var/run/mysqld/mysqld.sock
 
 development:
   <<: *default
@@ -56,5 +55,3 @@ production:
   password: 4kayamoses
   host: east1-mysql-instance1.cp6tcuvv1ko8.us-east-1.rds.amazonaws.com
   port: 3306
-  pool: 5
-  timeout: 5000
