@@ -1,0 +1,23 @@
+<h1>Listing acct_transactions</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @acct_transactions.each do |acct_transaction| %>
+      <tr>
+        <td><%= link_to 'Show', acct_transaction %></td>
+        <td><%= link_to 'Edit', edit_acct_transaction_path(acct_transaction) %></td>
+        <td><%= link_to 'Destroy', acct_transaction, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Acct transaction', new_acct_transaction_path %>

@@ -33,6 +33,10 @@ gem 'faker', '~> 1.4.3'
 gem 'aws-sdk', '~> 2.0.24'
 # The yaml_db gem is used to populate the database with existing data
 # gem 'yaml_db', '~>0.3.0'
+# The Rails-ERD gem generates diagrams based on ActiveRecord db models. Requires GraphViz utility
+group :development do
+  gem 'rails-erd', '~> 1.3.0'
+end
 # Use unicorn as the app server
 # gem 'unicorn'
 # Use Puma as the app server
