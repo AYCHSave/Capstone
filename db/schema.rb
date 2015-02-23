@@ -62,7 +62,7 @@ ActiveRecord::Schema.define(version: 0) do
     t.string  "cust_email",     limit: 75
     t.string  "cust_phone1",    limit: 20
     t.string  "cust_phone2",    limit: 20
-    t.string  "cust_title",     limit: 4
+    t.string  "cust_title",     limit: 20
     t.string  "cust_firstname", limit: 40
     t.string  "cust_lastname",  limit: 40
     t.integer "users_user_id",             null: false
@@ -78,9 +78,9 @@ ActiveRecord::Schema.define(version: 0) do
   add_index "roles", ["role_name"], name: "role_name_UNIQUE", unique: true, using: :btree
 
   create_table "states", force: true do |t|
-    t.string "name",         limit: 30, null: false
+    t.string "name",         limit: 15, null: false
     t.string "abbreviation", limit: 3,  null: false
-    t.string "assoc_press",  limit: 11
+    t.string "assoc_press",  limit: 8,  null: false
   end
 
   add_index "states", ["abbreviation", "name", "id"], name: "BY_ABBR_2", using: :btree
@@ -100,13 +100,34 @@ ActiveRecord::Schema.define(version: 0) do
   end
 
   add_index "users", ["roles_role_id"], name: "fk_users_roles1_idx", using: :btree
+  add_index "users", ["user_id"], name: "user_id", unique: true, using: :btree
   add_index "users", ["user_username"], name: "user_username_UNIQUE", unique: true, using: :btree
 
   create_table "zip_codes", primary_key: "zip_code", force: true do |t|
-    t.string  "city",            limit: 45, null: false
-    t.integer "states_state_id",            null: false
+    t.string "city",                limit: 45, null: false
+    t.string "states_abbreviation", limit: 3,  null: false
   end
 
-  add_index "zip_codes", ["states_state_id"], name: "fk_zip_codes_states1_idx", using: :btree
+  add_index "zip_codes", ["states_abbreviation"], name: "fk_zip_codes_states1_idx", using: :btree
+  add_index "zip_codes", ["zip_code"], name: "zip_code", unique: true, using: :btree
+
+  add_foreign_key "accounts", "acct_types", name: "fk_accounts_account_types1", column: "acct_types_acct_type_id", primary_key: "acct_type_id", dependent: :delete, options: "ON UPDATE CASCADE"
+  add_foreign_key "accounts", "customers", name: "fk_accounts_customers1", column: "customers_customer_id", primary_key: "customer_id", dependent: :delete, options: "ON UPDATE CASCADE"
+
+  add_foreign_key "acct_transactions", "accounts", name: "fk_transactions_accounts1", column: "accounts_account_id", primary_key: "account_id", dependent: :delete, options: "ON UPDATE CASCADE"
+  add_foreign_key "acct_transactions", "transaction_types", name: "fk_transactions_transaction_types1", column: "transaction_types_trans_type_id", primary_key: "trans_type_id", dependent: :delete, options: "ON UPDATE CASCADE"
+
+  add_foreign_key "addresses", "customers", name: "fk_addresses_customers1", column: "customers_customer_id", primary_key: "customer_id", dependent: :delete, options: "ON UPDATE CASCADE"
+  add_foreign_key "addresses", "zip_codes", name: "fk_addresses_zip_codes1", column: "zip_codes_zip_code", primary_key: "zip_code", dependent: :delete, options: "ON UPDATE CASCADE"
+
+  add_foreign_key "administrators", "users", name: "fk_administrators_users1", column: "users_user_id", primary_key: "user_id", dependent: :delete, options: "ON UPDATE CASCADE"
+
+  add_foreign_key "customers", "users", name: "customers_users_user_id_fk", column: "users_user_id", primary_key: "user_id"
+  add_foreign_key "customers", "users", name: "fk_customers_users1", column: "users_user_id", primary_key: "user_id", dependent: :delete, options: "ON UPDATE CASCADE"
+
+  add_foreign_key "users", "roles", name: "fk_users_roles1", column: "roles_role_id", primary_key: "role_id", dependent: :delete, options: "ON UPDATE CASCADE"
+  add_foreign_key "users", "roles", name: "users_roles_role_id_fk", column: "roles_role_id", primary_key: "role_id"
+
+  add_foreign_key "zip_codes", "states", name: "fk_zip_codes_states1", column: "states_abbreviation", primary_key: "abbreviation", dependent: :delete, options: "ON UPDATE CASCADE"
 
 end

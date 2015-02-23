@@ -1,0 +1,2 @@
+module AcctTypesHelper
+end

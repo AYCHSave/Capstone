@@ -1,0 +1,23 @@
+<h1>Listing acct_types</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @acct_types.each do |acct_type| %>
+      <tr>
+        <td><%= link_to 'Show', acct_type %></td>
+        <td><%= link_to 'Edit', edit_acct_type_path(acct_type) %></td>
+        <td><%= link_to 'Destroy', acct_type, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Acct type', new_acct_type_path %>

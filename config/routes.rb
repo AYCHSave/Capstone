@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :acct_types
+
   resources :acct_transactions
 
   resources :addresses
