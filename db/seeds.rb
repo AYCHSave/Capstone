@@ -10,17 +10,17 @@ require 'ffaker' #Using faker to seed make-believe data
 require 'csv' #Pull data from local .csv files
 
 # Seed zip_code and states tables via SQL import
-# csv_text = File.read("#{Rails.root}/db/state_table.csv")
-# csv = CSV.parse(csv_text, :headers => true)
-# csv.each do |row|
-#   State.create!(row.to_hash)
-# end
+csv_text = File.read("#{Rails.root}/db/state_table.csv")
+csv = CSV.parse(csv_text, :headers => true)
+csv.each do |row|
+  State.create!(row.to_hash)
+end
 
-# csv_text = File.read("#{Rails.root}/db/zip_code_table.csv")
-# csv = CSV.parse(csv_text, :headers => true)
-# csv.each do |row|
-#   ZipCode.create!(row.to_hash)
-# end
+csv_text = File.read("#{Rails.root}/db/zip_code_table.csv")
+csv = CSV.parse(csv_text, :headers => true)
+csv.each do |row|
+  ZipCode.create!(row.to_hash)
+end
 
 # Generate the 2 basic roles
 # Role.create(id: 1, name: 'Administrator')
@@ -104,7 +104,7 @@ end
 # Generate 100 addresses for addresses table to be assigned to customers
 100.times do |i|
 	a = Address.new
-		address1 = "#{Forgery::Address.street_address}"
+		address1 = Forgery('address').street_address
 		c = ZipCode.count
 		zipcode = ZipCode.offset(rand(c)).first
 
