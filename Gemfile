@@ -26,9 +26,15 @@ gem 'spring',        group: :development
 # Fabrication is a simple and powerful object generation library
 gem 'fabrication', '~> 2.12.2'
 # Faker, a port of Data::Faker from Perl, is used to easily generate fake data: names, addresses, phone numbers, etc.
-gem 'faker', '~> 1.4.3'
+# gem 'faker', '~> 1.4.3'
+# FastFaker, more robust faker module
+gem 'ffaker'
+# Forgery is another data generator
+gem 'forgery'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
+# Foreigner gem for generating foreign keys 
+gem 'foreigner', '~> 1.7.2'
 # Amazon cli tools
 gem 'aws-sdk', '~> 2.0.24'
 # The yaml_db gem is used to populate the database with existing data
