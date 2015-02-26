@@ -1,0 +1,55 @@
+id,name,abbreviation,assoc_press
+1,Alabama,AL,Ala.
+2,Alaska,AK,Alaska
+3,Arizona,AZ,Ariz.
+4,Arkansas,AR,Ark.
+5,California,CA,Calif.
+6,Colorado,CO,Colo.
+7,Connecticut,CT,Conn.
+8,Delaware,DE,Del.
+9,Florida,FL,Fla.
+10,Georgia,GA,Ga.
+11,Hawaii,HI,Hawaii
+12,Idaho,ID,Idaho
+13,Illinois,IL,Ill.
+14,Indiana,IN,Ind.
+15,Iowa,IA,Iowa
+16,Kansas,KS,Kan.
+17,Kentucky,KY,Ky.
+18,Louisiana,LA,La.
+19,Maine,ME,Maine
+20,Maryland,MD,Md.
+21,Massachusetts,MA,Mass.
+22,Michigan,MI,Mich.
+23,Minnesota,MN,Minn.
+24,Mississippi,MS,Miss.
+25,Missouri,MO,Mo.
+26,Montana,MT,Mont.
+27,Nebraska,NE,Nebr.
+28,Nevada,NV,Nev.
+29,New Hampshire,NH,N.H.
+30,New Jersey,NJ,N.J.
+31,New Mexico,NM,N.M.
+32,New York,NY,N.Y.
+33,North Carolina,NC,N.C.
+34,North Dakota,ND,N.D.
+35,Ohio,OH,Ohio
+36,Oklahoma,OK,Okla.
+37,Oregon,OR,Ore.
+38,Pennsylvania,PA,Pa.
+39,Rhode Island,RI,R.I.
+40,South Carolina,SC,S.C.
+41,South Dakota,SD,S.D.
+42,Tennessee,TN,Tenn.
+43,Texas,TX,Texas
+44,Utah,UT,Utah
+45,Vermont,VT,Vt.
+46,Virginia,VA,Va.
+47,Washington,WA,Wash.
+48,West Virginia,WV,W.Va.
+49,Wisconsin,WI,Wis.
+50,Wyoming,WY,Wyo.
+51,Washington,DC,DC
+84,Armed Forces Americas,AA,AA
+85,Armed Forces Europe,AE,AE
+86,Armed Forces Pacific,AP,AP

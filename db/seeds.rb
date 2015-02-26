@@ -7,42 +7,57 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 require 'ffaker' #Using faker to seed make-believe data
-# zip_code and states tables not seeded here, done via SQL import
+require 'csv' #Pull data from local .csv files
+
+# Seed zip_code and states tables via SQL import
+# csv_text = File.read("#{Rails.root}/db/state_table.csv")
+# csv = CSV.parse(csv_text, :headers => true)
+# csv.each do |row|
+#   State.create!(row.to_hash)
+# end
+
+# csv_text = File.read("#{Rails.root}/db/zip_code_table.csv")
+# csv = CSV.parse(csv_text, :headers => true)
+# csv.each do |row|
+#   ZipCode.create!(row.to_hash)
+# end
 
 # Generate the 2 basic roles
-Role.create(role_id: 1, role_name: 'Administrator')
-Role.create(role_id: 2, role_name: 'Customer')
+# Role.create(id: 1, name: 'Administrator')
+# Role.create(id: 2, name: 'Customer')
+
 # Generate transaction types
-TransactionType.create(trans_type_id: 1, trans_type_name: 'ATM')
-TransactionType.create(trans_type_id: 2, trans_type_name: 'Check')
-TransactionType.create(trans_type_id: 3, trans_type_name: 'Deposit')
-TransactionType.create(trans_type_id: 4, trans_type_name: 'Auto-draft')
-TransactionType.create(trans_type_id: 5, trans_type_name: 'POS')
-TransactionType.create(trans_type_id: 6, trans_type_name: 'Transfer')
-TransactionType.create(trans_type_id: 7, trans_type_name: 'Withdrawal')
-TransactionType.create(trans_type_id: 99, trans_type_name: 'Miscellaneous')
+TransactionType.create(id: 1, name: 'ATM')
+TransactionType.create(id: 2, name: 'Check')
+TransactionType.create(id: 3, name: 'Deposit')
+TransactionType.create(id: 4, name: 'Auto-draft')
+TransactionType.create(id: 5, name: 'POS')
+TransactionType.create(id: 6, name: 'Transfer')
+TransactionType.create(id: 7, name: 'Withdrawal')
+TransactionType.create(id: 99, name: 'Miscellaneous')
 # Generate account types
-AcctType.create(acct_type_id: 1, acct_type_name: 'savings', acct_interest_rate: 0.010)
-AcctType.create(acct_type_id: 2, acct_type_name: 'checking', acct_interest_rate: 0.000)
+AcctType.create(id: 1, name: 'savings', interest_rate: 0.010)
+AcctType.create(id: 2, name: 'checking', interest_rate: 0.000)
 
 # Generate 100 users (with "customer" role) (Admins created separately)
 users = [] # Empty array to store users
 100.times do
 	username = "#{Faker::Vehicle.make}#{Faker::BaconIpsum.word}-#{rand(999)}"
 	u = User.new
-		u.user_id = SecureRandom.random_number(999999999)
-		u.user_username = username.gsub(/\s+/,"")
-		u.user_password = SecureRandom.base64(12)
-		u.roles_role_id = 2
+		u.id = SecureRandom.random_number(9999999999)
+		u.username = username.gsub(/\s+/,"")
+		u.password = SecureRandom.base64(12)
+		# u.role_id = 2
 	u.save
 	users << u # Put newly created user in the array
 end
 
 # Generate admin ("Administrator") user # ADMIN USER_ID IS 10 ZEROES
-User.create(user_id: 0000000000, user_username: 'admin', user_password: 'Pa55w0rd', roles_role_id: 1)
+# User.create(id: 0000000000, username: 'admin', password: 'Pa55w0rd', role_id: 1)
+User.create(id: 0000000000, username: 'admin', password: 'Pa55w0rd')
 
-# Set up profile for above created admin user ADMIN USER_ID IS 10 NINES
-Administrator.create(admin_id: 9999999999, admin_firstname: 'Peggy', admin_lastname: 'Hill', users_user_id: 0000000000)
+# Set up profile for above created admin user ADMIN_ID IS 10 ONES
+Administrator.create(id: 1111111111, firstname: 'Peggy', lastname: 'Hill', user_id: 0000000000)
 
 # Generate 100 customers
 customers = [] # Empty array to store customers
@@ -74,14 +89,14 @@ customers = [] # Empty array to store customers
 				firstname = Forgery('name').first_name	
 		end
 
-		c.users_user_id = users[i].user_id
-		c.customer_id = SecureRandom.random_number(999999999) # 9-digit integer
-		c.cust_email = "#{Faker::Internet.free_email(firstname)}"
-		c.cust_phone1 = "#{Faker::PhoneNumber.short_phone_number}"
-		c.cust_phone2 = "#{Faker::PhoneNumber.short_phone_number}"
-		c.cust_title = name_prefix
-		c.cust_firstname = firstname
-		c.cust_lastname = lastname
+		c.user_id = users[i].id
+		c.id = SecureRandom.random_number(999999999) # 9-digit integer
+		c.email = "#{Faker::Internet.free_email(firstname)}"
+		c.phone1 = "#{Faker::PhoneNumber.short_phone_number}"
+		c.phone2 = "#{Faker::PhoneNumber.short_phone_number}"
+		c.title = name_prefix
+		c.firstname = firstname
+		c.lastname = lastname
 	c.save
 	customers << c
 end
@@ -89,7 +104,7 @@ end
 # Generate 100 addresses for addresses table to be assigned to customers
 100.times do |i|
 	a = Address.new
-		address1 = "#{Faker::Address.street_address}"
+		address1 = "#{Forgery::Address.street_address}"
 		c = ZipCode.count
 		zipcode = ZipCode.offset(rand(c)).first
 
@@ -101,10 +116,10 @@ end
 				secondary_address = nil
 		end
 
-		a.customers_customer_id = customers[i].customer_id
-		a.cust_address1 = address1
-		a.cust_address2 = secondary_address
-		a.zip_codes_zip_code = zipcode
+		a.customer_id = customers[i].id
+		a.address1 = address1
+		a.address2 = secondary_address
+		a.zip_code_zip_code = zipcode
 	a.save
 end
 
@@ -112,10 +127,10 @@ end
 accounts = []
 100.times do |i|
     a = Account.new
-    	a.customers_customer_id = customers[i].customer_id
-    	a.acct_types_acct_type_id = rand(1..2)
-    	a.account_id =  SecureRandom.random_number(999999999999) 
-    	a.account_balance = (5000.0 - 5.0) * rand() + 5
+    	a.customer_id = customers[i].id
+    	a.acct_type_id = rand(1..2)
+    	a.id =  SecureRandom.random_number(999999999999) # 12-digit account number
+    	a.balance = (5000.0 - 5.0) * rand() + 5
     	a.date_opened = Time.at((Time.now.year - 10) + rand * (Time.now.to_f)).to_date
     a.save
     accounts << a
@@ -124,25 +139,15 @@ end
 # Generate 50 more (secondary) accounts ("Some customers have more than 1 account")
 50.times do |i|
     a = Account.new
-    	a.customers_customer_id = customers[i].customer_id
-    	a.acct_types_acct_type_id = rand(1..2)
-    	a.account_id =  SecureRandom.random_number(999999999999) 
-    	a.account_balance = (200.0 - 5.0) * rand() + 5
+    	a.customer_id = customers[i].id
+    	a.acct_type_id = rand(1..2)
+    	a.id =  SecureRandom.random_number(999999999999) 
+    	a.balance = (200.0 - 5.0) * rand() + 5
     	a.date_opened = Time.at((Time.now.year - 10) + rand * (Time.now.to_f)).to_date
     a.save
 end
 
 # Generate historical transactions (AcctTransactions) for each account
-
-### TODOS!!!! ###
-# => Limit date of transaction to be since account was created.
-# => Fix "0.00" amount problem of certain transaction types.
-# => For that matter, don't let ANY transactions be "0.00"
-# => CREATE ROLLING BALANCE VARIABLE THAT UPDATES (array? hash?) WITH EA. NEW TRANSACTION
-# => Pass the above "rolling balance" to Account object to use for its account balance value
-# => Add more items to the descriptions arrays
-#
-### END TODOS ###
 descriptions_ATM = ['Bank Of Skyland ATM - Skyland, NC',
 					'Citi Store ATM - Columbus, OH',
 					'Jaspers Mini Mart ATM - Sweetwater, TX',
@@ -212,12 +217,12 @@ accounts.each do |i|
 			end
 
 		t = AcctTransaction.new
-			t.trans_id = SecureRandom.random_number(99999999999999) # 14-digit BigInt
-			t.accounts_account_id = accounts[j].account_id
-			t.transaction_types_trans_type_id = type
-			t.trans_date = Time.at((Time.now.month - 18) + rand * (Time.now.to_f)).to_date
-			t.trans_description = description
-			t.trans_amount = amount
+			t.id = SecureRandom.random_number(99999999999999) # 14-digit BigInt
+			t.account_id = accounts[j].id
+			t.transaction_type_id = type
+			t.date = Time.at((Time.now.month - 18) + rand * (Time.now.to_f)).to_date
+			t.description = description
+			t.amount = amount
 
 		t.save
 		account_transactions << t
