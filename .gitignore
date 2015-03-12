@@ -22,3 +22,5 @@
 
 # Ignore the local environment variables
 /config/local_env.yml
+/config/database.yml
+.rvmrc
